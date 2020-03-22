@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Football App</title>
+    <link rel="stylesheet" th:href="@{/views.css}" />
+</head>
+
+<form  th:object="${player}" method="post">
+    <div th:if="${message != null}" th:text="${message}" id="notification_msg" class="container returnTo">Static summary</div>
+    <div class="container">
+        <h1>Add Player</h1>
+        <hr>
+
+        <label for="firstName">First Name</label>
+        <input type="text" th:field="*{firstName}" id="first_name" placeholder="First Name">
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+
+        <label for="lastName">Last Name</label>
+        <input type="text" th:field="*{lastName}" id="last_name" placeholder="Last Name">
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+
+        <label for="jerseyNumber">Jersey Number</label>
+        <input type="text" th:field="*{jerseyNumber}" id="jerseyNumber">
+        <span th:if="${#fields.hasErrors('jerseyNumber')}" th:errors="*{jerseyNumber}"></span>
+
+        <label for="position">Position</label>
+        </br>
+        <th:block th:each="position : ${positions}">
+            <input th:id="${position}" name="position" type="checkbox" th:value="${position}" />
+            <span th:text="${position}">Position</span><br/>
+            <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></span>
+
+        </th:block>
+
+        </br>
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" th:field="*{dob}" th:value="${player.dob}" />
+        <span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
+
+        <hr>
+
+        <button type="submit" id="save_player_btn" class="btn">Add Player</button>
+    </div>
+    <div class="container returnTo">
+        <a th:href="@{/}">Return to Home</a>
+    </div>
+
+
+</form>
