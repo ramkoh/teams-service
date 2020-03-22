@@ -33,7 +33,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlayersTest {
+public class PlayersUnitTest {
 
     PlayerService playerService = new PlayerService();
 
