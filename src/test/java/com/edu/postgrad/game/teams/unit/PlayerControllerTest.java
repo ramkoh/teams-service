@@ -43,9 +43,6 @@ public class PlayerControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    PlayerService playerService;
-
     @Before
     public void setup() {
     }
