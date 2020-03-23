@@ -43,19 +43,36 @@ public class PlayerControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
+    PlayerService playerService;
+
     @Before
     public void setup() {
     }
 
     @Test
     public void createPlayerFormIsDisplayed() throws Exception {
-        Player player = new PlayerBuilder().build();
-
         mockMvc.perform(get("/player"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("players/add-player"))
                 .andExpect(model().attribute("positions", Position.values()))
                 .andExpect(model().attribute("message", Strings.EMPTY));
+
     }
 
+    @Test
+    public void testNullValidationOnPlayerIsPerformed() throws Exception {
+        mockMvc.perform(post("/player"))
+                .andExpect(status().is4xxClientError());
+
+
+    }
+    
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
