@@ -33,11 +33,6 @@ public class PlayerBuilder {
         return this;
     }
 
-  /*  public PlayerBuilder withPosition(final Position position){
-        this.position = position;
-        return this;
-    }*/
-
     public Player build() {
         return new Player(firstName, lastName, jerseyNumber, dob, position);
     }

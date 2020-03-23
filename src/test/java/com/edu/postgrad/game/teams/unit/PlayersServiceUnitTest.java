@@ -33,7 +33,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlayersUnitTest {
+public class PlayersServiceUnitTest {
 
     PlayerService playerService = new PlayerService();
 
@@ -57,6 +57,7 @@ public class PlayersUnitTest {
     public void testPlayerRepositoryIsInvoked(){
         Player player = new PlayerBuilder().build();
         when(playerRepository.save(player)).thenReturn(player);
+
         playerService.savePlayer(player);
         verify(playerRepository, new Times(1)).save(player);
     }
