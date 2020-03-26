@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,11 @@ public class PlayerController {
     @Autowired
     PlayerService playerService;
 
+   /* @Autowired
+    public PlayerController(PlayerService playerService){
+       this.playerService = playerService;
+    }*/
+
     @GetMapping("/player")
     public String showFormOfCreatePlayer(final Model model) {
         model.addAttribute("player", new Player());
@@ -29,10 +35,10 @@ public class PlayerController {
     }
 
 
-    @PostMapping("/player")
-    public String createPlayer(@Valid Player player, BindingResult result, Model model, HttpServletResponse httpResponse) {
+   @PostMapping("/player")
+    public String createPlayer(@RequestBody @Valid Player player, Errors errors, Model model, HttpServletResponse httpResponse) {
 
-        if (result.hasErrors()) {
+        if (errors.hasErrors()) {
             model.addAttribute("positions", Position.values());
             httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return "players/add-player";
@@ -46,4 +52,13 @@ public class PlayerController {
         return "players/add-player";
     }
 
+  /*  @PostMapping("/player")
+    public String createPlayer(@RequestBody Player player, Errors errors) {
+        playerService.savePlayer(player);
+        return "players/add-player";
+    }*/
+
+    public void setPlayerService(PlayerService playerService){
+        this.playerService = playerService;
+    }
 }
