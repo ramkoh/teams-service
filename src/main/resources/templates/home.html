@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:custom="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" th:href="@{/tabs.css}" />
+<h2>
+    <p>Welcome to the world of football</p>
+</h2>
+
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Players')">Players</button>
+        <button class="tablinks" onclick="openTab(event, 'Teams')">Teams</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Players" class="tabcontent">
+        <h3>Players</h3>
+        <p>Please choose one of the option</p>
+        <div>
+            <a th:href="@{/player}">Add Player </a>
+        </div>
+        <div>
+            <a th:href="@{/players}">View Players </a>
+        </div>
+      <!--  <div>
+            <a th:href="@{/player(id=${id})}" custom:linkMethod="put">Edit</a>
+        </div>-->
+    </div>
+
+    <div id="Teams" class="tabcontent">
+        <h3>Teams</h3>
+        <p>Please choose one of the option</p>
+        <div>
+            <a th:href="@{/team}">Add Team </a>
+        </div>
+        <div>
+            <a th:href="@{/teams}">View Teams </a>
+        </div>
+    </div>
+
+    <!--<img th:src="@{/images/home.jpg}"/>-->
+
+    <script>
+        function openTab(evt, tabName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
