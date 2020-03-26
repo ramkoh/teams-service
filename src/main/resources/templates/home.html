@@ -7,8 +7,8 @@
 
     <!-- Tab links -->
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Players')">Players</button>
-        <button class="tablinks" onclick="openTab(event, 'Teams')">Teams</button>
+        <button id="playersLink" class="tablinks" onclick="openTab(event, 'Players')">Players</button>
+        <button id="teamsLink" class="tablinks" onclick="openTab(event, 'Teams')">Teams</button>
     </div>
 
     <!-- Tab content -->
@@ -16,24 +16,21 @@
         <h3>Players</h3>
         <p>Please choose one of the option</p>
         <div>
-            <a th:href="@{/player}">Add Player </a>
+            <a id="addPlayer" th:href="@{/player}">Add Player </a>
         </div>
         <div>
-            <a th:href="@{/players}">View Players </a>
+            <a id="viewPlayers" th:href="@{/players}">View Players </a>
         </div>
-      <!--  <div>
-            <a th:href="@{/player(id=${id})}" custom:linkMethod="put">Edit</a>
-        </div>-->
     </div>
 
     <div id="Teams" class="tabcontent">
         <h3>Teams</h3>
         <p>Please choose one of the option</p>
         <div>
-            <a th:href="@{/team}">Add Team </a>
+            <a id="addTeam" th:href="@{/team}">Add Team </a>
         </div>
         <div>
-            <a th:href="@{/teams}">View Teams </a>
+            <a id="viewTeams" th:href="@{/teams}">View Teams </a>
         </div>
     </div>
 

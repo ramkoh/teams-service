@@ -37,7 +37,7 @@ public class CreatePlayerTest {
 
     @Given("^User clicks on Create Player link$")
     public void user_clicks_on_Create_Player_link() throws Throwable {
-        webdriver.get("http://localhost:8081/player");
+        webdriver.get("http://localhost:10080/teams/player");
     }
 
     @Given("^User fills out First and Last name of player$")
@@ -48,7 +48,7 @@ public class CreatePlayerTest {
 
     @Given("^User fills out Data of Birth of player$")
     public void user_fills_out_Data_of_Birth_of_player() throws Throwable {
-        webdriver.findElement(By.id("dob")).sendKeys("2010-07-17");
+        webdriver.findElement(By.id("dob")).sendKeys("1990-07-17");
     }
 
     @Given("^User fills out Position of player$")
