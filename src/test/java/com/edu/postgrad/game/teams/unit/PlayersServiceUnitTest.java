@@ -1,6 +1,8 @@
 package com.edu.postgrad.game.teams.unit;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -12,6 +14,8 @@ import com.edu.postgrad.game.teams.exception.PlayerException;
 import com.edu.postgrad.game.teams.service.PlayerService;
 
 
+import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -167,4 +171,18 @@ public class PlayersServiceUnitTest {
         );
     }
 
+    @Test
+    public void getAllPlayers(){
+        List<Player> expectedPlayers = Lists.newArrayList(new PlayerBuilder().build());
+        when(playerRepository.findAll()).thenReturn(expectedPlayers);
+
+        List<Player> actualPlayers = playerService.getAllPlayers();
+
+        Assertions.assertEquals(expectedPlayers.size(), actualPlayers.size());
+        Assertions.assertNotNull(actualPlayers.get(0).getAge());
+
+        int expectedAge = Period.between(LocalDate.now(), expectedPlayers.get(0).getDob()).getYears();
+        int actualAge = Period.between(LocalDate.now(), actualPlayers.get(0).getDob()).getYears();
+        Assertions.assertEquals(expectedAge, actualAge);
+    }
 }

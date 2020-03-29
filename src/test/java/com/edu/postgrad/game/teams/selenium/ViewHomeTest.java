@@ -31,6 +31,7 @@ public class ViewHomeTest {
     public void tearDown(){
         webdriver.close();
     }
+
     @When("^User opens link of Home Page in a browser$")
     public void user_opens_link_of_Home_Page_in_a_browser() throws Throwable {
         webdriver.get("http://localhost:10080/teams/");
@@ -75,5 +76,6 @@ public class ViewHomeTest {
         String playersLinkText = webdriver.findElement(By.id("viewTeams")).getText();
         Assertions.assertEquals(playersLinkText, "View Teams");
     }
+
 
 }

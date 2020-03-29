@@ -1,4 +1,5 @@
 Feature:Home Page
+
   Scenario: User navigates to Home Page of the site
     When User opens link of Home Page in a browser
     Then Home Page contains Players tab

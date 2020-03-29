@@ -2,6 +2,7 @@ package com.edu.postgrad.game.teams.service;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 import com.edu.postgrad.game.teams.dao.PlayerRepository;
 import com.edu.postgrad.game.teams.dto.Player;
@@ -30,6 +31,13 @@ public class PlayerService {
         }
         player = playerRepository.save(player);
         return player.getId();
+    }
+
+    public List<Player> getAllPlayers(){
+        List<Player> players = playerRepository.findAll();
+        LocalDate now = LocalDate.now();
+        players.forEach(p -> p.setAge(Period.between(p.getDob(), now).getYears()));
+        return players;
     }
 
     public void setPlayerRepository(PlayerRepository playerRepository){

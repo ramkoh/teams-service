@@ -45,6 +45,14 @@ public class PlayerController {
         return "players/add-player";
     }
 
+    @GetMapping("/players")
+    public String getAllPlayers(final Model model) {
+        Iterable<Player> players = playerService.getAllPlayers();
+        model.addAttribute("players", players);
+        model.addAttribute("source", "players");
+        return "players/view-players";
+   }
+
     //To mock service in unit tests
     public void setPlayerService(PlayerService playerService){
         this.playerService = playerService;

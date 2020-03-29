@@ -1,12 +1,14 @@
 package com.edu.postgrad.game.teams.unit;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.edu.postgrad.game.teams.dto.Player;
 import com.edu.postgrad.game.teams.dto.PlayerBuilder;
 import com.edu.postgrad.game.teams.rest.PlayerController;
 import com.edu.postgrad.game.teams.service.PlayerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +22,9 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.mockito.Mockito.mock;
@@ -189,6 +193,27 @@ public class PlayerControllerTest {
                 .andExpect(view().name("players/add-player"));
 
     }
+
+    @Test
+    public void canGetAllPlayers() throws Exception {
+
+        List<Player> players = Lists.newArrayList(new PlayerBuilder().build());
+        when(playerService.getAllPlayers()).thenReturn(players);
+
+        mvc.perform(
+                get("/players"))
+                .andExpect(model().attribute("players",
+                        Matchers.hasItem(hasProperty("firstName", Matchers.is(players.get(0).getFirstName())))))
+                .andExpect(model().attribute("players",
+                        Matchers.hasItem(hasProperty("lastName", Matchers.is(players.get(0).getLastName())))))
+                .andExpect(model().attribute("players",
+                        Matchers.hasItem(hasProperty("jerseyNumber", Matchers.is(players.get(0).getJerseyNumber())))))
+                .andExpect(model().attribute("source", Matchers.is("players")))
+                .andExpect(view().name("players/view-players"))
+                .andExpect(status().isOk());
+
+    }
+
 
     public static String asJsonString(final Object obj) {
         try {

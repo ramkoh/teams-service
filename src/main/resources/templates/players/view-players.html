@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:custom="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/views.css}"/>
+</head>
+
+
+<div th:if="${message != null}" th:text="${message}" class="container returnTo">Static summary</div>
+<body>
+
+<h1>Players list</h1>
+<div id="table_container">
+    <table>
+
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Jersey Number</th>
+            <th>Age</th>
+            <th th:if="${source == 'players'}">Add to Team</th>
+            <th th:if="${source == 'players'}">View Player</th>
+            <th th:if="${source == 'players'}">Update Player</th>
+        </tr>
+        <tr th:each="player : ${players}">
+            <!--  <form action="#" th:action="@{'/player/{id}'(id=${player.id})}" th:method="PUT" >-->
+            <td th:text="${player.firstName}"></td>
+            <td th:text="${player.lastName}"></td>
+            <td th:text="${player.jerseyNumber}"></td>
+            <td th:text="${player.age}"/>
+            <td th:if="${source == 'players'}"><a th:href="@{/player/{id}/teams/(id=${player.id})}"
+                                                  custom:linkMethod="GET">Add to Team...</a></td>
+            </td>
+
+            <td th:if="${source == 'players'}"><a th:href="@{/player/{id}(id=${player.id},show=view)}"
+                                                  custom:linkMethod="GET">View</a></td>
+            </td>
+            <td th:if="${source == 'players'}"><a th:href="@{/player/{id}(id=${player.id},show=update)}"
+                                                  custom:linkMethod="GET">Update</a></td>
+            </td>
+
+
+        </tr>
+
+    </table>
+</div>
+<div class="container returnTo">
+    <a th:href="@{/}">Return to Home</a>
+</div>
+
+</body>
+
+
+</html>
