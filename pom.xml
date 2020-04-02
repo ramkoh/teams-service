@@ -210,8 +210,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!--<failOnViolation>true</failOnViolation>
-                    <linkXRef>false</linkXRef>-->
+                    <failOnViolation>false</failOnViolation>
+                    <linkXRef>false</linkXRef>
                 </configuration>
             </plugin>
         </plugins>
