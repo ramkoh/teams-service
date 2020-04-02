@@ -3,7 +3,6 @@ package com.edu.postgrad.game.teams.unit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import com.edu.postgrad.game.teams.dto.Player;
 import com.edu.postgrad.game.teams.dto.PlayerBuilder;
@@ -13,7 +12,6 @@ import com.edu.postgrad.game.teams.rest.TeamController;
 import com.edu.postgrad.game.teams.service.TeamService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -69,7 +67,7 @@ public class TeamsControllerTest {
                 .build();
         String body = asJsonString(team);
         mvc.perform(
-                post("/team").contentType(MediaType.APPLICATION_JSON)
+                post("/test/team").contentType(MediaType.APPLICATION_JSON)
                         .param("team", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -86,7 +84,7 @@ public class TeamsControllerTest {
                 .build();
         String body = asJsonString(team);
         mvc.perform(
-                post("/team").contentType(MediaType.APPLICATION_JSON)
+                post("/test/team").contentType(MediaType.APPLICATION_JSON)
                         .param("team", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -103,7 +101,7 @@ public class TeamsControllerTest {
                 .build();
         String body = asJsonString(team);
         mvc.perform(
-                post("/team").contentType(MediaType.APPLICATION_JSON)
+                post("/test/team").contentType(MediaType.APPLICATION_JSON)
                         .param("team", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -120,7 +118,7 @@ public class TeamsControllerTest {
                 .build();
         String body = asJsonString(team);
         mvc.perform(
-                post("/team").contentType(MediaType.APPLICATION_JSON)
+                post("/test/team").contentType(MediaType.APPLICATION_JSON)
                         .param("team", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -133,14 +131,14 @@ public class TeamsControllerTest {
     @Test
     public void teamWithMoreThanMaxPlayersThrowsException() throws Exception {
         List<Player> players = new ArrayList<>();
-        Collections.nCopies(12, 1)
+        Collections.nCopies(13, 1)
                 .stream().forEach(i -> players.add(new PlayerBuilder().build()));
         Team team = new TeamBuilder()
                 .withPlayers(players)
                 .build();
         String body = asJsonString(team);
         mvc.perform(
-                post("/team").contentType(MediaType.APPLICATION_JSON)
+                post("/test/team").contentType(MediaType.APPLICATION_JSON)
                         .param("team", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
