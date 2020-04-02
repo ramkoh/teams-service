@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Football App</title>
+    <link rel="stylesheet" th:href="@{/views.css}"/>
+    <meta http-equiv="Content-Type" content="application/json; charset=UTF-8" />
+</head>
+<form th:object="${team}" method="post"  enctype="application/json">
+    <div th:if="${message != null}" th:text="${message}" class="container returnTo">Static summary</div>
+    <div class="container">
+        <h1>Add Team</h1>
+        <hr>
+
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+        <label for="code">Short Name</label>
+        <input type="text" th:field="*{code}" id="code" placeholder="Short Name">
+        <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
+
+        <button type="submit" class="btn">Add Team</button>
+    </div>
+    <div class="container returnTo">
+        <a th:href="@{/}">Return to Home</a>
+    </div>
+</form>
+
+</html>
