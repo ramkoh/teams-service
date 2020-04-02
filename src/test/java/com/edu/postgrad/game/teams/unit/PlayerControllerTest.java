@@ -55,7 +55,7 @@ public class PlayerControllerTest {
         System.out.print(body);
         when(playerService.savePlayer(player)).thenReturn(1L);
         mvc.perform(
-                post("/player").contentType(MediaType.APPLICATION_JSON)
+                post("/test/player").contentType(MediaType.APPLICATION_JSON)
                         .param("player", body)
                         .content(body))
                 .andExpect(model().attribute("player", hasProperty("firstName", Matchers.is(player.getFirstName()))))
@@ -76,7 +76,7 @@ public class PlayerControllerTest {
         String body = asJsonString(player);
         when(playerService.savePlayer(player)).thenReturn(1L);
         mvc.perform(
-                post("/player").contentType(MediaType.APPLICATION_JSON)
+                post("/test/player").contentType(MediaType.APPLICATION_JSON)
                         .param("player", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -94,7 +94,7 @@ public class PlayerControllerTest {
         String body = asJsonString(player);
         when(playerService.savePlayer(player)).thenReturn(1L);
         mvc.perform(
-                post("/player").contentType(MediaType.APPLICATION_JSON)
+                post("/test/player").contentType(MediaType.APPLICATION_JSON)
                         .param("player", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -112,7 +112,7 @@ public class PlayerControllerTest {
         String body = asJsonString(player);
         when(playerService.savePlayer(player)).thenReturn(1L);
         mvc.perform(
-                post("/player").contentType(MediaType.APPLICATION_JSON)
+                post("/test/player").contentType(MediaType.APPLICATION_JSON)
                         .param("player", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -130,7 +130,7 @@ public class PlayerControllerTest {
         String body = asJsonString(player);
         when(playerService.savePlayer(player)).thenReturn(1L);
         mvc.perform(
-                post("/player").contentType(MediaType.APPLICATION_JSON)
+                post("/test/player").contentType(MediaType.APPLICATION_JSON)
                         .param("player", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -148,7 +148,7 @@ public class PlayerControllerTest {
         String body = asJsonString(player);
         when(playerService.savePlayer(player)).thenReturn(1L);
         mvc.perform(
-                post("/player").contentType(MediaType.APPLICATION_JSON)
+                post("/test/player").contentType(MediaType.APPLICATION_JSON)
                         .param("player", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -166,7 +166,7 @@ public class PlayerControllerTest {
         String body = asJsonString(player);
         when(playerService.savePlayer(player)).thenReturn(1L);
         mvc.perform(
-                post("/player").contentType(MediaType.APPLICATION_JSON)
+                post("/test/player").contentType(MediaType.APPLICATION_JSON)
                         .param("player", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())
@@ -184,7 +184,7 @@ public class PlayerControllerTest {
         String body = asJsonString(player);
         when(playerService.savePlayer(player)).thenReturn(1L);
         mvc.perform(
-                post("/player").contentType(MediaType.APPLICATION_JSON)
+                post("/test/player").contentType(MediaType.APPLICATION_JSON)
                         .param("player", body)
                         .content(body))
                 .andExpect(status().is4xxClientError())

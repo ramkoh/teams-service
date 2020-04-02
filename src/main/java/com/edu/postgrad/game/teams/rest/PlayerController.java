@@ -7,6 +7,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,9 +30,8 @@ public class PlayerController {
         return "players/add-player";
     }
 
-
-   @PostMapping("/player")
-    public String createPlayer(@RequestBody @Valid Player player, Errors errors, Model model, HttpServletResponse httpResponse) {
+    @PostMapping("/player")
+    public String createPlayer(@Valid Player player, Errors errors, Model model, HttpServletResponse httpResponse) {
         if (errors.hasErrors()) {
             model.addAttribute("positions", Position.values());
             httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -57,5 +57,10 @@ public class PlayerController {
     //To mock service in unit tests
     public void setPlayerService(PlayerService playerService){
         this.playerService = playerService;
+    }
+
+    @PostMapping("/test/player")
+    public String createPlayerTest(@RequestBody @Valid Player player, Errors errors, Model model, HttpServletResponse httpResponse) {
+        return createPlayer(player, errors, model, httpResponse);
     }
 }
