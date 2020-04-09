@@ -23,5 +23,9 @@ public class TeamService {
         return teams;
     }
 
+    //For unit tests only
+    public void setTeamRepository(TeamRepository teamRepository){
+        this.teamRepository = teamRepository;
+    }
 
 }

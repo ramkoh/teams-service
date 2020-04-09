@@ -31,3 +31,40 @@ insert into players (id, first_name, last_name, jersey_number, player_position, 
 insert into players (id, first_name, last_name, jersey_number, player_position, dob) values (27, 'Gianluigi', 'Donnarumma', '22', 'GOAL_KEEPER', '1999-02-25');
 insert into players (id, first_name, last_name, jersey_number, player_position, dob) values (28, 'Leonardo', 'Bonucci', '19', 'DEFENDER', '1987-05-01');
 
+
+
+insert into teams(id, name, code) values (1, 'Germany', 'GER');
+insert into teams(id, name, code) values (2, 'Italy', 'ITA');
+insert into teams(id, name, code) values (3, 'Switzerland', 'SUI');
+insert into teams(id, name, code) values (4, 'Russia', 'RUS');
+insert into teams(id, name, code) values (5, 'Norway', 'NOR');
+insert into teams(id, name, code) values (6, 'Mexico', 'MEX');
+insert into teams(id, name, code) values (7, 'Denmark', 'DEN');
+
+-- German team
+insert into teams_players (team_id, players_id) values (1, 7);
+insert into teams_players (team_id, players_id) values (1, 8);
+insert into teams_players (team_id, players_id) values (1, 9);
+insert into teams_players (team_id, players_id) values (1, 10);
+insert into teams_players (team_id, players_id) values (1, 11);
+insert into teams_players (team_id, players_id) values (1, 12);
+insert into teams_players (team_id, players_id) values (1, 13);
+insert into teams_players (team_id, players_id) values (1, 14);
+insert into teams_players (team_id, players_id) values (1, 15);
+insert into teams_players (team_id, players_id) values (1, 16);
+insert into teams_players (team_id, players_id) values (1, 17);
+
+--Italin team
+insert into teams_players (team_id, players_id) values (2, 18);
+insert into teams_players (team_id, players_id) values (2, 19);
+insert into teams_players (team_id, players_id) values (2, 20);
+insert into teams_players (team_id, players_id) values (2, 21);
+insert into teams_players (team_id, players_id) values (2, 22);
+insert into teams_players (team_id, players_id) values (2, 23);
+insert into teams_players (team_id, players_id) values (2, 24);
+insert into teams_players (team_id, players_id) values (2, 25);
+insert into teams_players (team_id, players_id) values (2, 26);
+insert into teams_players (team_id, players_id) values (2, 27);
+insert into teams_players (team_id, players_id) values (2, 28);
+
+

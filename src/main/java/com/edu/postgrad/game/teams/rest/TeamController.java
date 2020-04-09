@@ -45,6 +45,13 @@ public class TeamController {
         return "teams/add-team";
     }
 
+    @GetMapping("/teams")
+    public String getAllTeams(final Model model) {
+        Iterable<Team> teams = teamService.getAllTeams();
+        model.addAttribute("teams", teams);
+        return "teams/view-teams";
+    }
+
     public void setPlayerService(TeamService teamService) {
         this.teamService = teamService;
     }

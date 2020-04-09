@@ -17,11 +17,12 @@
         <input type="text" th:field="*{name}" id="name" placeholder="Name">
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 
+        <br/>
         <label for="code">Short Name</label>
         <input type="text" th:field="*{code}" id="code" placeholder="Short Name">
         <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
 
-        <button type="submit" class="btn">Add Team</button>
+        <button type="submit" class="btn" id="save_team_btn">Add Team</button>
     </div>
     <div class="container returnTo">
         <a th:href="@{/}">Return to Home</a>

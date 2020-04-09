@@ -2,6 +2,7 @@ package com.edu.postgrad.game.teams.dto;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "teams")
+@Component
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

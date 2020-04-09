@@ -22,7 +22,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = TeamsCICDApplication.class)
 @ContextConfiguration(classes = TeamsCICDApplication.class)
 public class CreatePlayerTest {
- 
+
     WebDriver webdriver = new FirefoxDriver();
 
     private final String firstName = "Parii";
