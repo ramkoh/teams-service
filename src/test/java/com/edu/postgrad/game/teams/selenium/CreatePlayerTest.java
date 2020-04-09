@@ -1,6 +1,7 @@
 package com.edu.postgrad.game.teams.selenium;
 
 import com.edu.postgrad.game.teams.TeamsCICDApplication;
+import com.edu.postgrad.game.teams.service.PlayerService;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -11,14 +12,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.event.annotation.AfterTestClass;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = TeamsCICDApplication.class)
 @ContextConfiguration(classes = TeamsCICDApplication.class)
 public class CreatePlayerTest {
+ 
     WebDriver webdriver = new FirefoxDriver();
 
     private final String firstName = "Parii";
@@ -33,7 +37,6 @@ public class CreatePlayerTest {
     public void tearDown(){
         webdriver.close();
     }
-
 
     @Given("^User clicks on Create Player link$")
     public void user_clicks_on_Create_Player_link() throws Throwable {
