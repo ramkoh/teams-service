@@ -40,6 +40,5 @@ public class TeamsTest {
         assertThat(teams, (Every.everyItem(HasPropertyWithValue.hasProperty("id", Matchers.notNullValue()))));
         assertThat(teams, (Every.everyItem(HasPropertyWithValue.hasProperty("name", Matchers.notNullValue()))));
         assertThat(teams, (Every.everyItem(HasPropertyWithValue.hasProperty("code", Matchers.notNullValue()))));
-        assertThat(teams, (Every.everyItem(HasPropertyWithValue.hasProperty("web", Matchers.notNullValue()))));
     }
 }
