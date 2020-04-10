@@ -30,6 +30,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import static java.util.Optional.ofNullable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -184,5 +185,25 @@ public class PlayersServiceTest {
         int expectedAge = Period.between(LocalDate.now(), expectedPlayers.get(0).getDob()).getYears();
         int actualAge = Period.between(LocalDate.now(), actualPlayers.get(0).getDob()).getYears();
         Assertions.assertEquals(expectedAge, actualAge);
+    }
+
+    @Test
+    public void getValidPlayer(){
+        Player expectedPlayer = new PlayerBuilder().build();
+        when(playerRepository.findById(1L)).thenReturn(ofNullable(expectedPlayer));
+        Player actualPlayer = playerService.findPlayer(1L);
+
+        assertEquals(expectedPlayer.getFirstName(), actualPlayer.getFirstName());
+        assertEquals(expectedPlayer.getLastName(), actualPlayer.getLastName());
+        assertEquals(expectedPlayer.getDob(), actualPlayer.getDob());
+        assertEquals(expectedPlayer.getJerseyNumber(), actualPlayer.getJerseyNumber());
+        assertEquals(expectedPlayer.getPosition(), actualPlayer.getPosition());
+        assertEquals(expectedPlayer.getAge(), actualPlayer.getAge());
+    }
+
+    @Test
+    public void invalidPlayerThrowsException(){
+        when(playerRepository.findById(1L)).thenReturn(ofNullable(null));
+        assertThrows(PlayerException.class, () ->  playerService.findPlayer(1L));
     }
 }

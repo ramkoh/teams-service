@@ -71,7 +71,6 @@ public class CreatePlayerTest {
 
     @Then("^Player X created message should be displayed on screen$")
     public void player_X_created_message_should_be_displayed_on_screen() throws Throwable {
-
         String notificationMessage = webdriver.findElement(By.id("notification_msg")).getText();
         Assertions.assertEquals(notificationMessage, String.format("Player %s %s created successfully", firstName, lastName));
     }

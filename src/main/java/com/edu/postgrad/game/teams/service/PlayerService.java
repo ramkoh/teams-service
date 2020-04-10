@@ -40,6 +40,11 @@ public class PlayerService {
         return players;
     }
 
+    public Player findPlayer(Long playerId){
+        return playerRepository.findById(playerId).orElseThrow(() -> new PlayerException(""));
+    }
+
+
     public void setPlayerRepository(PlayerRepository playerRepository){
         this.playerRepository = playerRepository;
     }

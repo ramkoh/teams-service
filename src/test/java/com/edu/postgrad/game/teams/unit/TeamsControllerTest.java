@@ -11,6 +11,8 @@ import com.edu.postgrad.game.teams.dto.TeamBuilder;
 import com.edu.postgrad.game.teams.rest.TeamController;
 import com.edu.postgrad.game.teams.service.TeamService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
+import cucumber.api.java.gl.E;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +24,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -43,9 +46,18 @@ public class TeamsControllerTest {
     }
 
     @Test
+    public void testGetCreateTeamPage() throws Exception {
+        mvc.perform(
+                get("/team"))
+                .andExpect(model().attribute("team", hasProperty("name")))
+                .andExpect(model().attribute("team", hasProperty("code")))
+                .andExpect(view().name("teams/add-team"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void canCreatePlayer() throws Exception {
-        Team team = new TeamBuilder()
-                .build();
+        Team team = new TeamBuilder() .build();
         String body = asJsonString(team);
 
         when(teamService.saveTeam(team)).thenReturn(1L);
@@ -145,6 +157,24 @@ public class TeamsControllerTest {
                 .andExpect(model().hasErrors())
                 .andExpect(model().attributeHasFieldErrorCode("team", "players", "Size"))
                 .andExpect(view().name("teams/add-team"));
+
+    }
+
+    @Test
+    public void canGetAllTeams() throws Exception {
+
+        List<Team> teams = Lists.newArrayList(new TeamBuilder().build());
+        when(teamService.getAllTeams()).thenReturn(teams);
+
+        mvc.perform(
+                get("/teams"))
+                .andExpect(model().attribute("teams",
+                        Matchers.hasItem(hasProperty("name", Matchers.is(teams.get(0).getName())))))
+                .andExpect(model().attribute("teams",
+                        Matchers.hasItem(hasProperty("code", Matchers.is(teams.get(0).getCode())))))
+
+                .andExpect(view().name("teams/view-teams"))
+                .andExpect(status().isOk());
 
     }
 

@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="application/json; charset=UTF-8" />
 </head>
 <form th:object="${team}" method="post"  enctype="application/json">
-    <div th:if="${message != null}" th:text="${message}" class="container returnTo">Static summary</div>
+    <div th:if="${message != null}" th:text="${message}" id="notification_msg" class="container returnTo">Static summary</div>
     <div class="container">
         <h1>Add Team</h1>
         <hr>

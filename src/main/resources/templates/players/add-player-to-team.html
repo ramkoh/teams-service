@@ -7,7 +7,7 @@
 </head>
 <form th:action="@{/addPlayerToTeam/{pId}(pId = ${player.id} )}" method="post" th:object="${team}">
 
-    <div th:if="${message != null}" th:text="${message}" class="container returnTo">Static summary</div>
+    <div th:if="${message != null}" th:text="${message}" id="notification_msg" class="container returnTo">Static summary</div>
     <div class="container">
         <h1>Add Player to Team</h1>
         <hr>
@@ -26,7 +26,7 @@
             <option th:each="t : ${teams}" th:value="${t.id}" th:text="${t.name}"/>
         </select>
 
-        <button type="submit" class="btn">Add to the Team</button>
+        <button type="submit" id="add_player_to_team_btn" class="btn">Add to the Team</button>
 
     </div>
     <div class="container returnTo">

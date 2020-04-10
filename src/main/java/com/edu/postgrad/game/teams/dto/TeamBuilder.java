@@ -1,5 +1,6 @@
 package com.edu.postgrad.game.teams.dto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class TeamBuilder {
 
     private String code = "IRE";
 
-    private List<Player> players = Arrays.asList(/*new PlayerBuilder().build()*/);
+    private List<Player> players = new ArrayList<>();
 
     public TeamBuilder withName(String name){
         this.name = name;
