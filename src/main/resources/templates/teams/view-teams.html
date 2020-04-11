@@ -21,7 +21,7 @@
     <tr th:each="team : ${teams}">
         <td th:text="${team.name}"></td>
         <td th:text="${team.code}"></td>
-        <td><a th:href="@{/team/{id}/players(id=${team.id})}" custom:linkMethod="GET">View Players</a></td></td>
+        <td><a th:href="@{/team/{id}/players(id=${team.id})}" id="viewPlayers" custom:linkMethod="GET">View Players</a></td></td>
     </tr>
 </table>
 

@@ -162,7 +162,6 @@ public class TeamsControllerTest {
 
     @Test
     public void canGetAllTeams() throws Exception {
-
         List<Team> teams = Lists.newArrayList(new TeamBuilder().build());
         when(teamService.getAllTeams()).thenReturn(teams);
 
@@ -175,7 +174,23 @@ public class TeamsControllerTest {
 
                 .andExpect(view().name("teams/view-teams"))
                 .andExpect(status().isOk());
+    }
 
+    @Test
+    public void getPlayersOfTeam() throws Exception {
+        List<Player> players = Lists.newArrayList(new PlayerBuilder().build());
+        when(teamService.getPlayersOfTeam(1L)).thenReturn(players);
+        mvc.perform(
+                get("/team/1/players"))
+                .andExpect(model().attribute("players",
+                        Matchers.hasItem(hasProperty("firstName", Matchers.is(players.get(0).getFirstName())))))
+                .andExpect(model().attribute("players",
+                        Matchers.hasItem(hasProperty("lastName", Matchers.is(players.get(0).getLastName())))))
+                .andExpect(model().attribute("players",
+                        Matchers.hasItem(hasProperty("jerseyNumber", Matchers.is(players.get(0).getJerseyNumber())))))
+                .andExpect(model().attribute("source", "teams"))
+                .andExpect(view().name("players/view-players"))
+                .andExpect(status().isOk());
     }
 
     public static String asJsonString(final Object obj) {

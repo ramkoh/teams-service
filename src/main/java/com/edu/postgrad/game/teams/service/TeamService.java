@@ -3,6 +3,7 @@ package com.edu.postgrad.game.teams.service;
 import java.util.List;
 
 import com.edu.postgrad.game.teams.dao.TeamRepository;
+import com.edu.postgrad.game.teams.dto.Player;
 import com.edu.postgrad.game.teams.dto.Team;
 import com.edu.postgrad.game.teams.exception.TeamException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class TeamService {
 
     public Team findById(Long teamId){
         return teamRepository.findById(teamId).orElseThrow(TeamException::new);
+    }
+
+    public List<Player> getPlayersOfTeam(final Long teamId){
+        List<Player> players = teamRepository.findPlayersById(teamId);
+        return players;
     }
 
     //For unit tests only

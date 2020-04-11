@@ -1,5 +1,8 @@
 package com.edu.postgrad.game.teams.rest;
 
+import java.util.List;
+
+import com.edu.postgrad.game.teams.dto.Player;
 import com.edu.postgrad.game.teams.dto.Team;
 import com.edu.postgrad.game.teams.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -51,6 +55,14 @@ public class TeamController {
         Iterable<Team> teams = teamService.getAllTeams();
         model.addAttribute("teams", teams);
         return "teams/view-teams";
+    }
+
+    @GetMapping("/team/{id}/players")
+    public String getPlayers(@PathVariable Long id, Model model) {
+        List<Player> players = teamService.getPlayersOfTeam(id);
+        model.addAttribute("players", players);
+        model.addAttribute("source", "teams");
+        return "players/view-players";
     }
 
     public void setPlayerService(TeamService teamService) {

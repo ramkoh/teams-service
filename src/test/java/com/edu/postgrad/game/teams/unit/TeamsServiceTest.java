@@ -2,6 +2,7 @@ package com.edu.postgrad.game.teams.unit;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.edu.postgrad.game.teams.dao.TeamRepository;
@@ -67,6 +68,15 @@ public class TeamsServiceTest {
         when(teamRepository.findById(1L)).thenReturn(ofNullable(null));
 
         assertThrows(TeamException.class, () ->  teamService.findById(1L));
+    }
+
+    @Test
+    public void testGetAllPlayersOfTeam() {
+        List<Player> expectedPlayers = Lists.newArrayList(new PlayerBuilder().build());
+        when(teamRepository.findPlayersById(1L)).thenReturn(expectedPlayers);
+
+        List<Player> actualPlayers = teamService.getPlayersOfTeam(1L);
+        Assertions.assertEquals(expectedPlayers.size(), actualPlayers.size());
     }
 
 }

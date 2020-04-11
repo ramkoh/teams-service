@@ -15,16 +15,15 @@
     <table>
 
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Jersey Number</th>
+            <th id="firstName">First Name</th>
+            <th id="lastName">Last Name</th>
+            <th id="jerseyNumber">Jersey Number</th>
             <th>Age</th>
             <th th:if="${source == 'players'}">Add to Team</th>
             <th th:if="${source == 'players'}">View Player</th>
             <th th:if="${source == 'players'}">Update Player</th>
         </tr>
         <tr th:each="player : ${players}">
-            <!--  <form action="#" th:action="@{'/player/{id}'(id=${player.id})}" th:method="PUT" >-->
             <td th:text="${player.firstName}"></td>
             <td th:text="${player.lastName}"></td>
             <td th:text="${player.jerseyNumber}"></td>
