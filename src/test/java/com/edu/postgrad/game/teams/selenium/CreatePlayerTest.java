@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,13 +24,16 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(classes = TeamsCICDApplication.class)
 public class CreatePlayerTest {
 
-    WebDriver webdriver = new FirefoxDriver();
+    WebDriver webdriver;
 
     private final String firstName = "Parii";
     private final String lastName = "Kohli";
 
     @Before
     public void initialization() {
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--headless");
+        webdriver = new FirefoxDriver(options);
         System.setProperty("webdriver.gecko.driver","/home/eramkoh/Tools/geckodriver");
     }
 

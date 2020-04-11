@@ -21,6 +21,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -30,11 +31,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = TeamsCICDApplication.class)
 @ContextConfiguration(classes = TeamsCICDApplication.class)
 public class ViewAllPlayers {
-    WebDriver webdriver = new FirefoxDriver();
+    WebDriver webdriver;
 
 
     @Before
-    public void initialization() { System.setProperty("webdriver.gecko.driver","/home/eramkoh/Tools/geckodriver");
+    public void initialization() {
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--headless");
+        webdriver = new FirefoxDriver(options);
+        System.setProperty("webdriver.gecko.driver","/home/eramkoh/Tools/geckodriver");
     }
 
     @After
