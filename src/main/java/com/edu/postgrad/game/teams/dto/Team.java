@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Team {
     private String code;
 
     @Size(max = 11, message = "Team cannot have more than 11 players")
-    @OneToMany(targetEntity = Player.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Player.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Player> players;
 
     public Long getId() {
