@@ -6,8 +6,6 @@
     <link rel="stylesheet" th:href="@{/views.css}" />
 </head>
 
-
-
 <body>
 
 <h1>Teams list</h1>
@@ -24,8 +22,6 @@
         <td><a th:href="@{/team/{id}/players(id=${team.id})}" id="viewPlayers" custom:linkMethod="GET">View Players</a></td></td>
     </tr>
 </table>
-
-
 
 <p>
     <a href="welcome.html" th:href="@{/}">Return to home</a>
