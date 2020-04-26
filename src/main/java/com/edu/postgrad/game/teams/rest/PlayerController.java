@@ -3,7 +3,6 @@ package com.edu.postgrad.game.teams.rest;
 import com.edu.postgrad.game.teams.dto.Player;
 import com.edu.postgrad.game.teams.dto.Position;
 import com.edu.postgrad.game.teams.service.PlayerService;
-import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,6 @@ public class PlayerController {
     @Autowired
     PlayerService playerService;
 
-    @ApiOperation("Render page to add player")
     @GetMapping("/player")
     public String showFormOfCreatePlayer(final Model model) {
         model.addAttribute("player", new Player());
@@ -30,7 +28,6 @@ public class PlayerController {
         return "players/add-player";
     }
 
-    @ApiOperation("Save player")
     @PostMapping("/player")
     public String createPlayer(@Valid Player player, Errors errors, Model model, HttpServletResponse httpResponse) {
         if (errors.hasErrors()) {
@@ -47,7 +44,6 @@ public class PlayerController {
         return "players/add-player";
     }
 
-    @ApiOperation("View all players")
     @GetMapping("/players")
     public String getAllPlayers(final Model model) {
         Iterable<Player> players = playerService.getAllPlayers();

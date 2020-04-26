@@ -36,7 +36,7 @@ public class HomeControllerTest {
     }
 
     @Test
-    public void canViewHomePage() throws Exception {
+    public void canCreatePlayer() throws Exception {
         mvc.perform(
                 get("/"))
                 .andExpect(view().name("home"))
