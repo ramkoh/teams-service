@@ -5,6 +5,7 @@ import java.util.List;
 import com.edu.postgrad.game.teams.dto.Player;
 import com.edu.postgrad.game.teams.dto.Team;
 import com.edu.postgrad.game.teams.service.TeamService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,23 +21,17 @@ import javax.validation.Valid;
 @Controller
 public class TeamController {
 
-
     @Autowired
     TeamService teamService;
 
+    @ApiOperation("Render page to add team")
     @GetMapping("/team")
     public String showAddTeamForm(final Model model) {
         model.addAttribute("team", new Team());
         return "teams/add-team";
     }
 
-
-    @PostMapping(path = "test/team")
-    public String addTestTeam(@RequestBody @Valid Team team, Errors errors, Model model, HttpServletResponse httpResponse) {
-        return addTeam(team, errors, model, httpResponse);
-    }
-
-
+    @ApiOperation("Save team")
     @PostMapping(path = "team")
     public String addTeam( @Valid Team team, Errors errors, Model model, HttpServletResponse httpResponse) {
         if (errors.hasErrors()) {
@@ -50,6 +45,7 @@ public class TeamController {
         return "teams/add-team";
     }
 
+    @ApiOperation("View all teams")
     @GetMapping("/teams")
     public String getAllTeams(final Model model) {
         Iterable<Team> teams = teamService.getAllTeams();
@@ -57,6 +53,7 @@ public class TeamController {
         return "teams/view-teams";
     }
 
+    @ApiOperation("View players of the team")
     @GetMapping("/team/{id}/players")
     public String getPlayers(@PathVariable Long id, Model model) {
         List<Player> players = teamService.getPlayersOfTeam(id);
@@ -65,6 +62,10 @@ public class TeamController {
         return "players/view-players";
     }
 
+    @PostMapping(path = "test/team")
+    public String addTestTeam(@RequestBody @Valid Team team, Errors errors, Model model, HttpServletResponse httpResponse) {
+        return addTeam(team, errors, model, httpResponse);
+    }
     public void setPlayerService(TeamService teamService) {
         this.teamService = teamService;
     }

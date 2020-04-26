@@ -4,6 +4,7 @@ import com.edu.postgrad.game.teams.dto.Player;
 import com.edu.postgrad.game.teams.dto.Team;
 import com.edu.postgrad.game.teams.service.PlayerService;
 import com.edu.postgrad.game.teams.service.TeamService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ public class AddPlayerToTeamController {
     @Autowired
     PlayerService playerService;
 
+    @ApiOperation("Render page where user can add player to a team")
     @GetMapping("/player/{id}/teams")
     public String showForm(final Model model, @PathVariable final Long id){
         Player player = playerService.findPlayer(id);
@@ -32,6 +34,7 @@ public class AddPlayerToTeamController {
         return "players/add-player-to-team";
     }
 
+    @ApiOperation("Save player added to the team")
     @PostMapping("/addPlayerToTeam/{playerId}")
     public String addPlayerToTeam(Team team, final Model model, @PathVariable final Long playerId, HttpServletResponse response) {
         Team existingTeam = teamService.findById(team.getId());
