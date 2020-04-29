@@ -57,7 +57,7 @@ public class ViewAllTeams {
         names.stream().forEach(Assertions::assertNotNull);
     }
 
-    @Then("^Each row has code of player$")
+    @Then("^Each row has short code of team$")
     public void each_row_has_code_of_player() throws Throwable {
         List<String> codes = new ArrayList<>();
         List<WebElement> codeColumn = webdriver.findElements(By.xpath(".//*[@id=\"table_container\"]/table/tbody/tr/td[2]"));
